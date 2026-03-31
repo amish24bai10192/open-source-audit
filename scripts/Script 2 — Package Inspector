@@ -1,0 +1,19 @@
+#!/bin/bash
+# Script 2: Package Inspector
+
+PACKAGE="git"
+
+if dpkg -l | grep -qw $PACKAGE; then
+    echo "$PACKAGE is installed."
+    dpkg -s $PACKAGE | grep -E 'Version|Maintainer|Description'
+else
+    echo "$PACKAGE is NOT installed."
+fi
+
+case $PACKAGE in
+    git) echo "Git: Distributed version control system" ;;
+    apache2) echo "Apache: Web server powering internet" ;;
+    mysql) echo "MySQL: Database system" ;;
+    vlc) echo "VLC: Media player" ;;
+    *) echo "Unknown package" ;;
+esac
